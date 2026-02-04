@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import type { SelectOptionProps } from "./typeSelect";
+import type { SelectOptionProps } from "../type/typeSelect";
 
 export type UseSelectProps = {
   options: SelectOptionProps[];

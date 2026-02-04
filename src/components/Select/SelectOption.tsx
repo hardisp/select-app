@@ -1,4 +1,4 @@
-import type { SelectOptionProps } from "./typeSelect";
+import type { SelectOptionProps } from "../../type/typeSelect";
 import { useSelectContext } from "./useSelectContext";
 
 export function SelectOption({

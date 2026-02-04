@@ -1,6 +1,7 @@
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { SelectProvider } from "./SelectProvider";
-import { useSelect, type UseSelectProps } from "./useSelect";
-import { useSelectFloating, type FloatingPlacement } from "./useSelectFloating";
+import { useSelect, type UseSelectProps } from "../../hooks/useSelect";
+import { useSelectFloating, type FloatingPlacement } from "../../hooks/useSelectFloating";
 
 export function SelectRoot({
   children,
@@ -17,6 +18,15 @@ export function SelectRoot({
     placement,
     zIndex: props.zIndex,
   });
+
+  useOutsideClick(
+    [
+      { current: floating.refs.reference.current },
+      { current: floating.refs.floating.current },
+    ],
+    () => select.close(),
+    select.isOpen
+  );
 
   return (
     <SelectProvider

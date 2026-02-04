@@ -1,10 +1,15 @@
 import { useEffect, useRef } from "react";
-import { useSelectContext } from "./useSelectContext";
+import { useSelectContext } from "../../hooks/useSelectContext";
 type SelectSearchProps = {
   clearIcon?: React.ReactNode;
   searchIcon?: React.ReactNode;
+  clear?: boolean;
 };
-export function SelectSearch({ clearIcon, searchIcon }: SelectSearchProps) {
+export function SelectSearch({
+  clearIcon,
+  searchIcon,
+  clear,
+}: SelectSearchProps) {
   const { search, setSearch, isOpen } = useSelectContext();
   const ref = useRef<HTMLInputElement>(null);
 
@@ -27,13 +32,15 @@ export function SelectSearch({ clearIcon, searchIcon }: SelectSearchProps) {
           placeholder="Search..."
         />
       </div>
-      <button
-        type="button"
-        className="hrdi-search-btn-clear"
-        onClick={() => setSearch("")}
-      >
-        {clearIcon ?? <div className="hrdi-search-clear-icon">x</div>}
-      </button>
+      {clear && (
+        <button
+          type="button"
+          className="hrdi-search-btn-clear"
+          onClick={() => setSearch("")}
+        >
+          {clearIcon ?? <div className="hrdi-search-clear-icon">x</div>}
+        </button>
+      )}
     </div>
   );
 }
